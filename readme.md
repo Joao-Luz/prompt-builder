@@ -28,7 +28,6 @@ Here is an example usage, with both the `.json` file and Python call:
             "description": "Você é um matemático.",
             "guidance": "Responda com soluções numéricas.",
         }
-
     }
 }
 ```
