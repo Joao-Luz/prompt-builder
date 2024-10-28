@@ -15,7 +15,6 @@ Variants may be defined under the `"variants"` object, but are optional. Each va
 Here is an example usage, with both the `.json` file and Python call:
 
 ```json
-// math_problems.json
 {
     "schema": ["description", "guidance", "examples", "query"],
     "examples": "{description} = {result}",
