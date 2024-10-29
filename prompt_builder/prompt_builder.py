@@ -6,7 +6,7 @@ class PromptBuilder():
             self.schema = schema
             self.parts = parts
         
-        def build(self, query, examples={}, info={}):
+        def build(self, examples=[], query={}, **kwargs):
             prompt = ''
             for key in self.schema:
                 part = self.parts[key]
@@ -18,7 +18,7 @@ class PromptBuilder():
                     prompt += part.format(**query)
 
                 else:
-                    prompt += part.format(**info) + '\n\n'
+                    prompt += part.format(**kwargs) + '\n\n'
 
             return prompt
 
@@ -55,9 +55,9 @@ class PromptBuilder():
 
             self._prompt_templates[variant] = PromptBuilder.PromptTemplate(schema, template_parts)
 
-    def build(self, query={}, examples={}, info={}, variant=None):
+    def build(self, variant=None, examples=[], query={}, **kwargs):
         if variant not in self.variants:
             raise Exception(f'Unknown variant "{variant}" for prompt template "{self.name}"')
 
         prompt = self._prompt_templates[variant]
-        return prompt.build(query, examples, info)
+        return prompt.build(examples=examples, query=query, **kwargs)

@@ -4,11 +4,11 @@ Simple library to build LLM prompts.
 
 ## Usage
 
-Create a `.json` file containing a template for your prompts. Prompts are made out of parts and their order is defined by the `schema`. Each part is formatted in Python's `f-string` format, with variables being sourced from dicts passed to the `PromptBuilder`'s `build` method. Here's a list of possible prompt parts and their corresponding dicts:
+Create a `.json` file containing a template for your prompts. Prompts are made out of parts and their order is defined by the `schema`. Each part is formatted in Python's `f-string` format, with variables being sourced from `kwargs` passed to the `PromptBuilder`'s `build` method. Here's a list of possible prompt parts:
 
-- `examples`: used to pass examples for LLM In Context Learning. Information is passed via the `examples` parameter. This is a template for a single example, but multiple examples may be passed to the `build` method as a list of dicts. Each example is succeeded by a line break;
-- `query`: used to pass a query to the LLM. Information is passed via the `query` parameter.
-- Any other name except for `variants` and `schema`: the remainder of the prompt's parts. Information is passed via the `info` parameter.
+- `examples`: used to pass examples for LLM In Context Learning. This is a template for a single example, but multiple examples may be passed to the `build` method as a list under the `examples` argument. Each example is succeeded by a line break;
+- `query`: used to pass a query to the LLM. Information is passed via the `query` argument.
+- Any other name except for `variants` and `schema`: the remainder of the prompt's parts. Information is passed via the `build`'s method kwargs.
 
 Variants may be defined under the `"variants"` object, but are optional. Each variant may redefine the prompt's schema and parts **for that variant only**. If a variant doesn't redefine a component, it'll use the prompt's respective default component.
 
@@ -45,5 +45,5 @@ examples = [
 
 query = {'description': '5 * 3'}
 
-prompt = builder.build(query=query, examples=examples, variant='en')
+prompt = builder.build(variant='en', examples=examples, query=query)
 ```

@@ -5,7 +5,7 @@
     "variants": {
 
         "pt": {
-            "description": "Você é um matemático que deve resolver problemas matemáticos simples.",
+            "description": "Você é um matemático {domain} que deve resolver problemas matemáticos simples.",
             "guidance": "Responda às perguntas apenas com a solução numérica e nada mais.",
             "example_intro": "Veja alguns exemplos de problemas matemáticos:",
             "query_intro": "Agora veja o problema seguinte e responda de acordo:"
