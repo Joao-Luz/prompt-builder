@@ -9,10 +9,10 @@ examples = [
 
 query = {'description': '5 * 3'}
 
-domain = 'legal'
+builder.set_variant('pt')
 
-prompt = builder.build(variant='pt', examples=examples, query=query, domain=domain)
+prompt = builder.build(examples=examples, query=query, nationality='brasileiro')
 print(prompt)
 
-prompt = builder.build(variant='en', examples=examples, query=query) 
+prompt = builder.build(variant='en', examples=examples, query=query, nationality='english') 
 print(prompt)

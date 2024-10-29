@@ -5,14 +5,14 @@
     "variants": {
 
         "pt": {
-            "description": "Você é um matemático {domain} que deve resolver problemas matemáticos simples.",
+            "description": "Você é um matemático {nationality} que deve resolver problemas matemáticos simples.",
             "guidance": "Responda às perguntas apenas com a solução numérica e nada mais.",
             "example_intro": "Veja alguns exemplos de problemas matemáticos:",
             "query_intro": "Agora veja o problema seguinte e responda de acordo:"
         },
         
         "en": {
-            "description": "You are a mathematician who needs to solve simple math problems.",
+            "description": "You are an {nationality} mathematician who needs to solve simple math problems.",
             "guidance": "Answer the problems only with the numeric solution and nothing else.",
             "example_intro": "Look at some examples of math problems:",
             "query_intro": "Now look at the following math problem and answer accordingly:"

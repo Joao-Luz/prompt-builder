@@ -10,7 +10,7 @@ Create a `.json` file containing a template for your prompts. Prompts are made o
 - `query`: used to pass a query to the LLM. Information is passed via the `query` argument.
 - Any other name except for `variants` and `schema`: the remainder of the prompt's parts. Information is passed via the `build`'s method kwargs.
 
-Variants may be defined under the `"variants"` object, but are optional. Each variant may redefine the prompt's schema and parts **for that variant only**. If a variant doesn't redefine a component, it'll use the prompt's respective default component.
+Variants may be defined under the `"variants"` object, but are optional. Each variant may redefine the prompt's schema and parts **for that variant only**. If a variant doesn't redefine a component, it'll use the prompt's respective default component. You may set a default variant by using the `set_variant` method, but a variant may also be specified with the `variant` argument.
 
 Here is an example usage, with both the `.json` file and Python call:
 
@@ -21,11 +21,11 @@ Here is an example usage, with both the `.json` file and Python call:
     "query": "{description} = ",
     "variants": {
         "en": {
-            "description": "You are a mathematician.",
+            "description": "You are an {nationality} mathematician.",
             "guidance": "Answer with numeric solutions.",
         },
         "pt": {
-            "description": "Você é um matemático.",
+            "description": "Você é um matemático {nationality}.",
             "guidance": "Responda com soluções numéricas.",
         }
     }
@@ -45,5 +45,7 @@ examples = [
 
 query = {'description': '5 * 3'}
 
-prompt = builder.build(variant='en', examples=examples, query=query)
+builder.set_variant('pt')
+prompt_pt = builder.build(examples=examples, query=query, nationality='brasileiro')
+prompt_en = builder.build(variant='en', examples=examples, query=query, nationality='english')
 ```

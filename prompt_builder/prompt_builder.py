@@ -55,9 +55,17 @@ class PromptBuilder():
 
             self._prompt_templates[variant] = PromptBuilder.PromptTemplate(schema, template_parts)
 
+        self.current_variant = None
+
+    def set_variant(self, variant):
+        self.current_variant = variant
+
     def build(self, variant=None, examples=[], query={}, **kwargs):
-        if variant not in self.variants:
+        if variant is not None and variant not in self.variants:
             raise Exception(f'Unknown variant "{variant}" for prompt template "{self.name}"')
 
+        if variant is None:
+            variant = self.current_variant
+            
         prompt = self._prompt_templates[variant]
         return prompt.build(examples=examples, query=query, **kwargs)
